@@ -4,14 +4,17 @@
 
 using namespace std;
 
+// Inisiasi Nama Fungsi
 void DrawBoard(int board, int font);
 void SetBoardValue(int index, int board, int font);
 void CheckWinner();
 bool CheckDraw();
 
+// Inisiasi Player
 const int PLAYER_X = 1;
 const int PLAYER_O = 2;
 
+// Inisiasi Array Board
 char boardValue[9] = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
 int isWin = false;
@@ -19,16 +22,24 @@ int isDraw = false;
 int player = PLAYER_X;
 
 int main() {
+	// Membuat layar window 800x800
 	slWindow(800, 800, "TicTacToe Kelompok 10", false);
+
+	// Inisiasi Gambar Papan
 	int board = slLoadTexture("./assets/img/board.png");
+
+	// Inisiasi Font
 	int font = slLoadFont("./assets/font/font.ttf");
 
 	while (!slShouldClose()) {
 		slSetBackColor(1, 1, 1);
 
+		// Mengecek apakah status win atau draw
 		if (!isWin && !isDraw) {
+			// Membuat papan
 			DrawBoard(board, font);
 
+			// Menangkap triger nomor
 			if (slGetKey('1')) {
 				SetBoardValue(0, board, font);
 			}
@@ -61,6 +72,7 @@ int main() {
 			slSetForeColor(0, 0, 0, 1);
 			slSetTextAlign(SL_ALIGN_CENTER);
 
+			// Mengecek apakah draw atau win
 			if (isDraw) {
 				slSetFont(font, 270);
 
@@ -86,7 +98,8 @@ int main() {
 	return 0;
 }
 
-void DrawBoard(int board, int font) {
+void DrawBoard(int board, int font)
+{
 	slSetForeColor(0, 0, 0, 1);
 	slSprite(board, 400, 400, 800, 800);
 
@@ -105,7 +118,8 @@ void DrawBoard(int board, int font) {
 	slText(645, 50, string(1, boardValue[8]).c_str());
 }
 
-void SetBoardValue(int index, int board, int font) {
+void SetBoardValue(int index, int board, int font)
+{
 	if (boardValue[index] != 'X' && boardValue[index] != 'O') {
 		if (player != PLAYER_X) { 
 			boardValue[index] = 'O'; 
