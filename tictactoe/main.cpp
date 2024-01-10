@@ -34,6 +34,23 @@ int main() {
 	while (!slShouldClose()) {
 		slSetBackColor(1, 1, 1);
 
+		// Mereset game ketika menekan tombol enter
+		if ((isWin || isDraw) && slGetKey(SL_KEY_ENTER)) {
+			isDraw = false;
+			isWin = false;
+			player = PLAYER_X;
+
+			boardValue[0] = '1';
+			boardValue[1] = '2';
+			boardValue[2] = '3';
+			boardValue[3] = '4';
+			boardValue[4] = '5';
+			boardValue[5] = '6';
+			boardValue[6] = '7';
+			boardValue[7] = '8';
+			boardValue[8] = '9';
+		}
+
 		// Mengecek apakah status win atau draw
 		if (!isWin && !isDraw) {
 			// Membuat papan
